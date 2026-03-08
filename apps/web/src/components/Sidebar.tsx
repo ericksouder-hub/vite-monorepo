@@ -14,6 +14,7 @@ import {
     ChevronRight,
     Sparkles
 } from 'lucide-react';
+import { motion } from 'motion/react';
 import { SidebarPromo } from './SidebarPromo';
 
 interface NavItemProps {
@@ -29,27 +30,38 @@ function NavItem({ icon, label, to, badge, hasSubmenu, collapsed }: NavItemProps
     return (
         <NavLink
             to={to}
-            className={({ isActive }) => `group flex items-center ${collapsed ? 'justify-center p-2' : 'justify-between px-3 py-2'} rounded-lg text-sm transition-all duration-200 ${isActive
-                ? 'text-foreground font-bold bg-accent shadow-sm'
-                : 'text-foreground/80 font-medium hover:bg-accent/50 hover:text-foreground'
+            className={({ isActive }) => `group relative flex items-center ${collapsed ? 'justify-center p-2' : 'justify-between px-3 py-2'} rounded-lg text-sm transition-all duration-200 ${isActive
+                ? 'text-foreground font-bold'
+                : 'text-foreground/80 font-medium hover:text-foreground'
                 }`}
             title={collapsed ? label : undefined}
         >
-            <div className="flex items-center gap-3">
-                <div className="shrink-0 transition-transform duration-200 group-hover:scale-110">{icon}</div>
-                {!collapsed && <span className="truncate">{label}</span>}
-            </div>
-            {!collapsed && (
-                <div className="flex items-center gap-2">
-                    {badge && (
-                        <span className="flex h-4.5 min-w-4.5 items-center justify-center rounded-full px-1.5 text-[10px] font-bold bg-primary/10 text-primary">
-                            {badge}
-                        </span>
+            {({ isActive }) => (
+                <>
+                    {isActive && (
+                        <motion.div
+                            layoutId="active-pill-sidebar"
+                            className="absolute inset-0 rounded-lg bg-accent shadow-sm z-0"
+                            transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
+                        />
                     )}
-                    {hasSubmenu && (
-                        <ChevronRight className="size-3 transition-transform duration-200 text-muted-foreground/0 group-hover:text-muted-foreground/50 -translate-x-1 group-hover:translate-x-0" />
+                    <div className="relative z-10 flex items-center gap-3">
+                        <div className="shrink-0 transition-transform duration-200 group-hover:scale-110 group-active:scale-95">{icon}</div>
+                        {!collapsed && <span className="truncate">{label}</span>}
+                    </div>
+                    {!collapsed && (
+                        <div className="relative z-10 flex items-center gap-2">
+                            {badge && (
+                                <span className="flex h-4.5 min-w-4.5 items-center justify-center rounded-full px-1.5 text-[10px] font-bold bg-primary/10 text-primary">
+                                    {badge}
+                                </span>
+                            )}
+                            {hasSubmenu && (
+                                <ChevronRight className="size-3 transition-transform duration-200 text-muted-foreground/0 group-hover:text-muted-foreground/50 -translate-x-1 group-hover:translate-x-0" />
+                            )}
+                        </div>
                     )}
-                </div>
+                </>
             )}
         </NavLink>
     );

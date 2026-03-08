@@ -50,15 +50,28 @@ function NavItem({ to, icon, label }: { to: string; icon: React.ReactNode; label
         <NavLink
             to={to}
             className={({ isActive }) => `
-                flex flex-1 flex-col items-center justify-center py-2 transition-all active:scale-95 gap-1
+                group relative flex flex-1 flex-col items-center justify-center py-2 transition-all active:scale-95 gap-1
                 ${isActive
                     ? 'text-primary'
                     : 'text-muted-foreground/60 hover:text-foreground'
                 }
             `}
         >
-            {icon}
-            <span className="text-[11px] font-bold">{label}</span>
+            {({ isActive }) => (
+                <>
+                    {isActive && (
+                        <motion.div
+                            layoutId="active-pill-bottom"
+                            className="absolute inset-y-1 inset-x-2 rounded-xl bg-primary/10 z-0"
+                            transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
+                        />
+                    )}
+                    <div className="relative z-10 flex flex-col items-center gap-1 transition-transform duration-200 group-active:scale-90">
+                        {icon}
+                        <span className="text-[11px] font-bold">{label}</span>
+                    </div>
+                </>
+            )}
         </NavLink>
     );
 }
