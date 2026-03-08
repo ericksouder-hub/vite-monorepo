@@ -9,13 +9,16 @@
     "baseColor": "neutral",
     "cssVariables": true
   },
-  "iconLibrary": "hugeicons",
+  "iconLibrary": "lucide",
   "aliases": {
     "components": "@/components",
     "hooks": "@/hooks",
     "lib": "@/lib",
     "utils": "@workspace/ui/lib/utils",
     "ui": "@workspace/ui/components"
+  },
+  "registries": {
+    "@ss-blocks": "https://shadcnstudio.com/r/blocks/{name}.json"
   },
   "rtl": false,
   "menuColor": "default",

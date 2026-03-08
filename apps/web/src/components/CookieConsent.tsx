@@ -26,7 +26,7 @@ export function CookieConsent() {
     return (
         <div
             data-slot="card"
-            className="bg-card text-card-foreground flex flex-col gap-4 rounded-xl p-6 fixed border-2 shadow-lg max-md:top-1/2 max-md:-translate-y-1/2 max-sm:mx-4 sm:max-md:left-1/2 sm:max-md:-translate-x-1/2 md:right-8 md:bottom-8 md:max-w-[420px] z-50 animate-in fade-in slide-in-from-bottom-5 duration-500 ease-out"
+            className="bg-card text-card-foreground fixed z-50 flex w-auto max-w-[calc(100vw-2rem)] flex-col gap-4 rounded-xl border-2 p-6 shadow-lg animate-in fade-in slide-in-from-bottom-5 duration-500 ease-out left-4 right-4 top-1/2 -translate-y-1/2 sm:left-1/2 sm:right-auto sm:w-[min(420px,calc(100vw-3rem))] sm:-translate-x-1/2 md:left-auto md:right-8 md:bottom-8 md:top-auto md:w-[420px] md:translate-x-0 md:translate-y-0"
         >
             <div data-slot="card-content" className="flex gap-4 max-sm:flex-col">
                 <Cookie className="size-8 shrink-0 text-primary" aria-hidden="true" />
