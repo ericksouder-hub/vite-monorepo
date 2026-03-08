@@ -12,8 +12,6 @@ export function Success() {
             description="Your password has been changed. You can now log in to your account with your new credentials and continue where you left off."
             cardTitle="Welcome back to Ava"
             cardDescription="Your account is now secure with your new password. We're glad to have you back!"
-            avatarSeedOffset={120}
-            avatarLabel="Security Updated"
             cardType="dark"
         >
             <AuthBrandHeader />

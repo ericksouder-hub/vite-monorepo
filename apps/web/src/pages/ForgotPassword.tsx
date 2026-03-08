@@ -17,8 +17,6 @@ export function ForgotPassword() {
             description="Resetting your password is quick and easy. Just enter your registered email address, and we'll send you a secure link to reset your password."
             cardTitle="Follow the instructions in the email"
             cardDescription="If you don't see the email in your inbox, be sure to check your spam or junk folder."
-            avatarSeedOffset={60}
-            avatarLabel="10k+ users back online"
         >
             <AuthBrandHeader />
 

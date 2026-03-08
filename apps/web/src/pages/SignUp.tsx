@@ -20,8 +20,6 @@ export function SignUp() {
             description="Your account will allow you to securely save your progress, customize your preferences, and stay connected across all your devices."
             cardTitle="We're excited to have you join our community"
             cardDescription="Your account will allow you to securely save your progress and customize your preferences."
-            avatarSeedOffset={40}
-            avatarLabel="Ready to book?"
         >
             <AuthBrandHeader />
 

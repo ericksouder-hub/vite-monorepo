@@ -14,7 +14,6 @@ export function Login() {
             description="Access your dashboard and manage your appointments."
             cardTitle="Plan your days better with Ava"
             cardDescription="Stay connected with Ava. We help you stay organized and never miss an appointment again."
-            avatarSeedOffset={20}
         >
             <AuthBrandHeader />
 

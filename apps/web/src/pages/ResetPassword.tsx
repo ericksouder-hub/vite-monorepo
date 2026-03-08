@@ -20,8 +20,6 @@ export function ResetPassword() {
             description="Please create a new password below. Make sure it's strong and secure, combining letters, numbers, and special characters."
             cardTitle="Regain access to your scheduling"
             cardDescription="We'll have you back to booking appointments and managing your calendar in just a moment."
-            avatarSeedOffset={80}
-            avatarLabel="Safe & Secure"
         >
             <AuthBrandHeader />
 

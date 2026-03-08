@@ -7,8 +7,6 @@ interface AuthLayoutProps {
     description: string;
     cardTitle: string;
     cardDescription: string;
-    avatarSeedOffset?: number;
-    avatarLabel?: string;
     cardType?: 'default' | 'dark';
 }
 
@@ -18,8 +16,6 @@ export function AuthLayout({
     description,
     cardTitle,
     cardDescription,
-    avatarSeedOffset = 20,
-    avatarLabel = "Joined by 10,000+ experts",
     cardType = 'default'
 }: AuthLayoutProps) {
     return (
@@ -68,22 +64,41 @@ export function AuthLayout({
                                 {cardDescription}
                             </p>
 
-                            <div className="flex items-center gap-4 pt-4">
-                                <div className="flex -space-x-3">
-                                    {[1, 2, 3, 4].map((i) => (
-                                        <div key={i} className={`h-10 w-10 rounded-full border-2 bg-zinc-100 ring-2 ring-transparent transition-transform hover:scale-110 hover:z-30 cursor-pointer overflow-hidden ${cardType === 'dark' ? 'border-zinc-900' : 'border-white dark:border-zinc-900'
+                            <div className="space-y-4 pt-4">
+                                <div className="flex items-center gap-3">
+                                    <div className="flex -space-x-2.5">
+                                        {[
+                                            "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=128&h=128&auto=format&fit=crop",
+                                            "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=128&h=128&auto=format&fit=crop",
+                                            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=128&h=128&auto=format&fit=crop",
+                                            "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=128&h=128&auto=format&fit=crop"
+                                        ].map((src, i) => (
+                                            <div key={i} className={`h-9 w-9 rounded-full border-2 bg-zinc-100 ring-2 ring-transparent transition-transform hover:scale-110 hover:z-30 cursor-pointer overflow-hidden ${cardType === 'dark' ? 'border-zinc-900' : 'border-white dark:border-zinc-900'
+                                                }`}>
+                                                <img
+                                                    src={src}
+                                                    alt="Professional User"
+                                                    className="h-full w-full object-cover"
+                                                />
+                                            </div>
+                                        ))}
+                                        <div className={`flex h-9 w-9 items-center justify-center rounded-full border-2 text-[10px] font-bold ring-2 ring-transparent transition-transform hover:scale-110 hover:z-30 cursor-pointer ${cardType === 'dark' ? 'border-zinc-900 bg-zinc-800 text-zinc-400' : 'border-white bg-zinc-100 text-zinc-500 dark:border-zinc-900 dark:bg-zinc-800 dark:text-zinc-400'
                                             }`}>
-                                            <img
-                                                src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${i + avatarSeedOffset}`}
-                                                alt="User Avatar"
-                                                className="h-full w-full object-cover"
-                                            />
+                                            +12k
                                         </div>
-                                    ))}
+                                    </div>
+                                    <div className={`text-sm font-semibold tracking-tight ${cardType === 'dark' ? 'text-zinc-300' : 'text-zinc-600 dark:text-zinc-300'
+                                        }`}>
+                                        Trusted by high-performance teams
+                                    </div>
                                 </div>
-                                <div className={`text-sm font-bold ${cardType === 'dark' ? 'text-green-400' : 'text-primary'
+
+                                <div className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 ${cardType === 'dark' ? 'border-white/10 bg-white/5' : 'border-primary/10 bg-primary/5'
                                     }`}>
-                                    {avatarLabel}
+                                    <div className="size-1.5 rounded-full bg-primary animate-pulse" />
+                                    <span className="text-[10px] font-bold uppercase tracking-widest text-primary">
+                                        Live: Ava optimized 1,242 schedules today
+                                    </span>
                                 </div>
                             </div>
                         </div>

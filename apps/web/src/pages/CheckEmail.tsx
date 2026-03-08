@@ -12,8 +12,6 @@ export function CheckEmail() {
             description="We've sent a password reset link to your email address. Please click the link to reset your password and regain access to your account."
             cardTitle="Verify your identity quickly"
             cardDescription="Security is our top priority. Verifying your email ensures that only you can access your account."
-            avatarSeedOffset={100}
-            avatarLabel="Trusted by 10k+ professionals"
         >
             <AuthBrandHeader />
 
