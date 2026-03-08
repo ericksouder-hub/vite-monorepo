@@ -30,7 +30,7 @@ function NavItem({ icon, label, to, badge, hasSubmenu, collapsed }: NavItemProps
     return (
         <NavLink
             to={to}
-            className={({ isActive }) => `group relative flex items-center ${collapsed ? 'justify-center p-2' : 'justify-between px-3 py-2'} rounded-lg text-sm transition-all duration-200 ${isActive
+            className={({ isActive }) => `group relative flex items-center ${collapsed ? 'justify-center p-2' : 'justify-between px-4 py-2'} text-sm transition-all duration-200 ${isActive
                 ? 'text-foreground font-bold'
                 : 'text-foreground/80 font-medium hover:text-foreground'
                 }`}
@@ -41,7 +41,7 @@ function NavItem({ icon, label, to, badge, hasSubmenu, collapsed }: NavItemProps
                     {isActive && (
                         <motion.div
                             layoutId="active-pill-sidebar"
-                            className="absolute inset-0 rounded-lg bg-primary/[0.08] dark:bg-primary/[0.15] border border-primary/20 dark:border-primary/30 shadow-sm z-0"
+                            className="absolute inset-0 bg-primary/[0.08] dark:bg-primary/[0.15] border-r-2 border-primary z-0"
                             transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
                         />
                     )}
@@ -89,7 +89,7 @@ export function Sidebar({ collapsed }: SidebarProps) {
                 {!collapsed && <span className="text-xl font-bold text-foreground tracking-tight truncate">Ava</span>}
             </div>
 
-            <div className={`flex-1 overflow-y-auto overflow-x-hidden ${collapsed ? 'p-2' : 'p-3'}`}>
+            <div className={`flex-1 overflow-y-auto overflow-x-hidden ${collapsed ? 'p-2' : 'py-3'}`}>
                 <nav className="flex flex-col gap-1">
                     <NavItem
                         icon={<ChartColumnBig className="size-4" />}
