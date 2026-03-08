@@ -16,10 +16,10 @@ export function ResetPassword() {
 
     return (
         <AuthLayout
-            title={<>You're just one step away<br /><span className="text-white/80">from regaining access.</span></>}
-            description="Please create a new password below. Make sure it's strong and secure, combining letters, numbers, and special characters."
-            cardTitle="Regain access to your scheduling"
-            cardDescription="We'll have you back to booking appointments and managing your calendar in just a moment."
+            title={<>Set your new password<br /><span className="text-white/80">and regain access.</span></>}
+            description="Create a strong, unique password to keep your account secure. We recommend using a mix of letters, numbers, and symbols."
+            cardTitle="Secure your account"
+            cardDescription="Your security is our priority. Once updated, you'll be able to sign in immediately."
         >
             <AuthBrandHeader />
 
@@ -77,7 +77,7 @@ export function ResetPassword() {
                 className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-muted-foreground hover:text-primary transition-colors py-2 group"
             >
                 <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
-                Back to login
+                Back to sign in
             </Link>
         </AuthLayout>
     );

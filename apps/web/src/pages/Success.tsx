@@ -9,9 +9,9 @@ export function Success() {
     return (
         <AuthLayout
             title={<>Password reset<br /><span className="text-white/80">successfully!</span></>}
-            description="Your password has been changed. You can now log in to your account with your new credentials and continue where you left off."
-            cardTitle="Welcome back to Ava"
-            cardDescription="Your account is now secure with your new password. We're glad to have you back!"
+            description="Your password has been securely updated. You can now sign in with your new credentials and start managing your schedule."
+            cardTitle="Ready to go"
+            cardDescription="Your account is fully secured and ready for use. We're glad to have you back on the platform!"
             cardType="dark"
         >
             <AuthBrandHeader />
@@ -37,7 +37,7 @@ export function Success() {
                     onClick={() => navigate('/login')}
                     className="w-full h-11 rounded-md border border-input bg-background text-foreground font-semibold hover:bg-accent transition-all"
                 >
-                    Back to login
+                    Back to sign in
                 </button>
             </div>
 

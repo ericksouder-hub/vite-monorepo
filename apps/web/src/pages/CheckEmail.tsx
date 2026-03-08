@@ -8,10 +8,10 @@ export function CheckEmail() {
 
     return (
         <AuthLayout
-            title={<>Check your email,<br /><span className="text-white/80">we've sent a link.</span></>}
-            description="We've sent a password reset link to your email address. Please click the link to reset your password and regain access to your account."
-            cardTitle="Verify your identity quickly"
-            cardDescription="Security is our top priority. Verifying your email ensures that only you can access your account."
+            title={<>Check your inbox,<br /><span className="text-white/80">we've sent a link.</span></>}
+            description="Check your email for a password reset link. It expires in 30 minutes for your security. Don't forget to check your spam folder just in case."
+            cardTitle="Secure verification"
+            cardDescription="We send temporary secure links to ensure that only the account owner can authorize password changes."
         >
             <AuthBrandHeader />
 
@@ -19,8 +19,8 @@ export function CheckEmail() {
                 <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
                     <Mail size={24} strokeWidth={2.5} />
                 </div>
-                <h2 className="text-2xl font-semibold tracking-tight">Verification Sent</h2>
-                <p className="text-muted-foreground text-sm">We've sent a secure link to your inbox. Please check your email to proceed.</p>
+                <h2 className="text-2xl font-semibold tracking-tight">Email Sent</h2>
+                <p className="text-muted-foreground text-sm">We've sent a secure link to your email address. Please click the link to proceed.</p>
             </div>
 
             <div className="space-y-4">
@@ -28,7 +28,7 @@ export function CheckEmail() {
                     onClick={() => navigate('/login')}
                     className="w-full h-11 rounded-md bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-all shadow-md active:scale-[0.98]"
                 >
-                    Open email app
+                    Return to sign in
                 </button>
 
                 <div className="text-center">
@@ -46,7 +46,7 @@ export function CheckEmail() {
                 className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-muted-foreground hover:text-primary transition-colors py-2 group"
             >
                 <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
-                Back to login
+                Back to sign in
             </Link>
         </AuthLayout>
     );

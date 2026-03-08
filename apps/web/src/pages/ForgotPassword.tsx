@@ -13,10 +13,10 @@ export function ForgotPassword() {
 
     return (
         <AuthLayout
-            title={<>Don't worry,<br /><span className="text-white/80">it happens!</span></>}
-            description="Resetting your password is quick and easy. Just enter your registered email address, and we'll send you a secure link to reset your password."
-            cardTitle="Follow the instructions in the email"
-            cardDescription="If you don't see the email in your inbox, be sure to check your spam or junk folder."
+            title={<>Forgot your password?<br /><span className="text-white/80">We've got you covered.</span></>}
+            description="Enter your registered email address and we'll send you a secure link to reset your password and regain access."
+            cardTitle="Simple, secure recovery"
+            cardDescription="We use industry-standard encryption to ensure your account recovery is safe and private."
         >
             <AuthBrandHeader />
 
@@ -46,7 +46,7 @@ export function ForgotPassword() {
                 className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-muted-foreground hover:text-primary transition-colors py-2 group"
             >
                 <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
-                Back to login
+                Back to sign in
             </Link>
         </AuthLayout>
     );

@@ -89,7 +89,7 @@ export function AuthLayout({
                                     </div>
                                     <div className={`text-sm font-semibold tracking-tight ${cardType === 'dark' ? 'text-zinc-300' : 'text-zinc-600 dark:text-zinc-300'
                                         }`}>
-                                        Trusted by high-performance teams
+                                        Trusted by 12,000+ professionals
                                     </div>
                                 </div>
 
@@ -97,7 +97,7 @@ export function AuthLayout({
                                     }`}>
                                     <div className="size-1.5 rounded-full bg-primary animate-pulse" />
                                     <span className="text-[10px] font-bold uppercase tracking-widest text-primary">
-                                        Live: Ava optimized 1,242 schedules today
+                                        Live: Ava streamlined 1,242 appointments today
                                     </span>
                                 </div>
                             </div>

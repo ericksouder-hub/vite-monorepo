@@ -10,16 +10,16 @@ export function Login() {
 
     return (
         <AuthLayout
-            title={<>Welcome back!<br /><span className="text-white/80">Please sign in to your Ava account</span></>}
-            description="Access your dashboard and manage your appointments."
-            cardTitle="Plan your days better with Ava"
-            cardDescription="Stay connected with Ava. We help you stay organized and never miss an appointment again."
+            title={<>Welcome back!<br /><span className="text-white/80">Sign in to your Ava account</span></>}
+            description="Manage your calendar, sync appointments, and stay organized."
+            cardTitle="Everything you need, all in one place"
+            cardDescription="Join 12,000+ professionals who use Ava to streamline their daily schedules and never miss a beat."
         >
             <AuthBrandHeader />
 
             <div>
-                <h2 className="mb-1.5 text-2xl font-semibold">Sign In</h2>
-                <p className="text-muted-foreground text-sm">Choose your preferred login method:</p>
+                <h2 className="mb-1.5 text-2xl font-semibold">Sign in</h2>
+                <p className="text-muted-foreground text-sm">Choose how you'd like to sign in:</p>
             </div>
 
             <div className="flex flex-wrap gap-3 sm:gap-4">
@@ -115,7 +115,7 @@ export function Login() {
             </form>
 
             <p className="text-center text-sm text-muted-foreground">
-                New on our platform? <Link to="/signup" className="text-primary font-bold hover:underline underline-offset-4">Create an account</Link>
+                Don't have an account? <Link to="/signup" className="text-primary font-bold hover:underline underline-offset-4">Create one now</Link>
             </p>
         </AuthLayout>
     );

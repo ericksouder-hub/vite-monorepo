@@ -16,10 +16,10 @@ export function SignUp() {
 
     return (
         <AuthLayout
-            title={<>Create your account<br /><span className="text-white/80">to get started.</span></>}
-            description="Your account will allow you to securely save your progress, customize your preferences, and stay connected across all your devices."
-            cardTitle="We're excited to have you join our community"
-            cardDescription="Your account will allow you to securely save your progress and customize your preferences."
+            title={<>Join the community<br /><span className="text-white/80">and start scheduling.</span></>}
+            description="Securely manage your appointments, sync preferences, and stay organized across all your devices."
+            cardTitle="The smartest way to manage your time"
+            cardDescription="Experience a seamless, AI-driven approach to scheduling that adapts to your workflow."
         >
             <AuthBrandHeader />
 
@@ -120,7 +120,7 @@ export function SignUp() {
             </form>
 
             <p className="text-center text-sm text-muted-foreground">
-                Already have an account? <Link to="/login" className="text-primary font-bold hover:underline underline-offset-4">Log in</Link>
+                Already have an account? <Link to="/login" className="text-primary font-bold hover:underline underline-offset-4">Sign in</Link>
             </p>
         </AuthLayout>
     );
