@@ -28,18 +28,18 @@ export function Success() {
 
             <div className="space-y-4">
                 <button
-                    onClick={() => navigate('/login')}
-                    className="w-full h-11 rounded-md bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-all shadow-md active:scale-[0.98]"
+                    onClick={() => navigate('/dashboard')}
+                    className="w-full h-11 rounded-md bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-all shadow-md active:scale-[0.98] flex items-center justify-center gap-2"
                 >
-                    Back to login
+                    Go to Dashboard
+                    <ArrowRight size={18} />
                 </button>
 
                 <button
                     onClick={() => navigate('/login')}
-                    className="w-full h-11 rounded-md border border-input bg-background text-foreground font-semibold hover:bg-accent transition-all flex items-center justify-center gap-2"
+                    className="w-full h-11 rounded-md border border-input bg-background text-foreground font-semibold hover:bg-accent transition-all"
                 >
-                    Go to Dashboard
-                    <ArrowRight size={18} />
+                    Back to login
                 </button>
             </div>
 
