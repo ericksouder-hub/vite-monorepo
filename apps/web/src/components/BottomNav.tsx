@@ -62,7 +62,7 @@ function NavItem({ to, icon, label }: { to: string; icon: React.ReactNode; label
                     {isActive && (
                         <motion.div
                             layoutId="active-pill-bottom"
-                            className="absolute inset-y-1 inset-x-2 rounded-xl bg-primary/10 z-0"
+                            className="absolute inset-y-0 inset-x-1 rounded-xl bg-primary/[0.12] dark:bg-primary/[0.22] border border-primary/20 dark:border-primary/40 shadow-sm z-0"
                             transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
                         />
                     )}

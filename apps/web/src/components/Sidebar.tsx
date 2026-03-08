@@ -41,7 +41,7 @@ function NavItem({ icon, label, to, badge, hasSubmenu, collapsed }: NavItemProps
                     {isActive && (
                         <motion.div
                             layoutId="active-pill-sidebar"
-                            className="absolute inset-0 rounded-lg bg-accent shadow-sm z-0"
+                            className="absolute inset-0 rounded-lg bg-primary/[0.08] dark:bg-primary/[0.15] border border-primary/20 dark:border-primary/30 shadow-sm z-0"
                             transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
                         />
                     )}
