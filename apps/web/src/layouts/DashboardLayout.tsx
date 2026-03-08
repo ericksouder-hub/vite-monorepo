@@ -13,13 +13,6 @@ import {
   ChartColumnBig,
   User,
   Users,
-  TrendingUp,
-  ChartColumnStacked,
-  ClipboardList,
-  TriangleAlert,
-  SquareCheckBig,
-  Upload,
-  Link as LinkIcon,
   ChevronRight,
   Settings,
   X,
@@ -30,7 +23,7 @@ import {
   Image as ImageIcon,
   Sparkles
 } from 'lucide-react';
-import { SidebarPromo } from '../components/SidebarPromo';
+import { Sidebar } from '../components/Sidebar';
 import { BottomNav } from '../components/BottomNav';
 
 export function DashboardLayout() {
@@ -54,7 +47,7 @@ export function DashboardLayout() {
       {/* Sidebar (Desktop) */}
       <aside className={`hidden md:flex ${isSidebarCollapsed ? 'w-[4.5rem]' : 'w-[17.5rem]'} shrink-0 flex-col p-6 pr-0 sticky top-0 h-screen transition-all duration-300`}>
         <div className="flex h-full w-full flex-col rounded-xl border bg-card shadow-sm overflow-hidden">
-          <SidebarContent collapsed={isSidebarCollapsed} />
+          <Sidebar collapsed={isSidebarCollapsed} />
         </div>
       </aside>
 
@@ -471,97 +464,4 @@ function NotificationDropdown() {
   );
 }
 
-function SidebarContent({ collapsed }: { collapsed?: boolean }) {
-  return (
-    <>
-      <div className={`flex items-center ${collapsed ? 'justify-center' : 'gap-2'} p-4`}>
-        <div className="flex size-8 shrink-0 items-center justify-center rounded-full text-primary">
-          <svg width="1em" height="1em" viewBox="0 0 328 329" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-8">
-            <rect y="0.5" width="328" height="328" rx="164" fill="currentColor"></rect>
-            <path d="M165.018 72.3008V132.771C165.018 152.653 148.9 168.771 129.018 168.771H70.2288" stroke="white" strokeWidth="20"></path>
-            <path d="M166.627 265.241L166.627 204.771C166.627 184.889 182.744 168.771 202.627 168.771L261.416 168.771" stroke="white" strokeWidth="20"></path>
-            <line x1="238.136" y1="98.8184" x2="196.76" y2="139.707" stroke="white" strokeWidth="20"></line>
-            <line x1="135.688" y1="200.957" x2="94.3128" y2="241.845" stroke="white" strokeWidth="20"></line>
-            <line x1="133.689" y1="137.524" x2="92.5566" y2="96.3914" stroke="white" strokeWidth="20"></line>
-            <line x1="237.679" y1="241.803" x2="196.547" y2="200.671" stroke="white" strokeWidth="20"></line>
-          </svg>
-        </div>
-        {!collapsed && <span className="text-xl font-bold text-foreground tracking-tight truncate">Ava</span>}
-      </div>
 
-      <div className={`flex-1 overflow-y-auto overflow-x-hidden ${collapsed ? 'p-2' : 'p-3'}`}>
-        <nav className="flex flex-col gap-1">
-          <NavItem icon={<ChartColumnBig className="size-4" />} label="Dashboard" badge="5" active collapsed={collapsed} />
-
-          {!collapsed ? (
-            <div className="mt-6 mb-2 px-3 text-[10px] font-bold text-muted-foreground/60 uppercase tracking-widest truncate">Core Pages</div>
-          ) : (
-            <div className="mt-6 mb-2 px-2 text-xs font-medium text-transparent h-4"></div>
-          )}
-          <NavItem icon={<User className="size-4" />} label="User Behavior" collapsed={collapsed} />
-          <NavItem icon={<Users className="size-4" />} label="Audience" collapsed={collapsed} />
-          <NavItem icon={<TrendingUp className="size-4" />} label="Traffic Sources" badge="3" collapsed={collapsed} />
-          <NavItem icon={<ChartColumnStacked className="size-4" />} label="Engagement Metrics" collapsed={collapsed} />
-          <NavItem icon={<ClipboardList className="size-4" />} label="Custom Reports" hasSubmenu collapsed={collapsed} />
-          <NavItem icon={<TriangleAlert className="size-4" />} label="Error Logs" collapsed={collapsed} />
-          <NavItem icon={<SquareCheckBig className="size-4" />} label="Survey Results" collapsed={collapsed} />
-
-          {!collapsed ? (
-            <div className="mt-6 mb-2 px-3 text-[10px] font-bold text-muted-foreground/60 uppercase tracking-widest truncate">Visualization</div>
-          ) : (
-            <div className="mt-6 mb-2 px-2 text-xs font-medium text-transparent h-4"></div>
-          )}
-          <NavItem icon={<Upload className="size-4" />} label="Data Export" collapsed={collapsed} />
-          <NavItem icon={<LinkIcon className="size-4" />} label="Integrations" hasSubmenu collapsed={collapsed} />
-        </nav>
-      </div>
-
-      {!collapsed && (
-        <div className="p-4 mt-auto">
-          <SidebarPromo
-            variant="premium"
-            icon={<Sparkles className="size-4" />}
-            title="Upgrade to Premium"
-            description={
-              <>
-                Get lifetime access to 600+<br />expert-led courses today.
-              </>
-            }
-            actionText="Upgrade Now"
-            onAction={() => console.log('Upgrade clicked')}
-          />
-        </div>
-      )}
-    </>
-  );
-}
-
-function NavItem({ icon, label, badge, active, hasSubmenu, collapsed }: { icon: React.ReactNode, label: string, badge?: string, active?: boolean, hasSubmenu?: boolean, collapsed?: boolean }) {
-  return (
-    <a
-      href="#"
-      className={`group flex items-center ${collapsed ? 'justify-center p-2' : 'justify-between px-3 py-2'} rounded-lg text-sm transition-all duration-200 ${active
-        ? 'text-foreground font-bold bg-accent shadow-sm'
-        : 'text-foreground/80 font-medium hover:bg-accent/50 hover:text-foreground'
-        }`}
-      title={collapsed ? label : undefined}
-    >
-      <div className="flex items-center gap-3">
-        <div className={`shrink-0 transition-transform duration-200 ${!active && 'group-hover:scale-110'}`}>{icon}</div>
-        {!collapsed && <span className="truncate">{label}</span>}
-      </div>
-      {!collapsed && (
-        <div className="flex items-center gap-2">
-          {badge && (
-            <span className={`flex h-4.5 min-w-4.5 items-center justify-center rounded-full px-1.5 text-[10px] font-bold ${active ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'}`}>
-              {badge}
-            </span>
-          )}
-          {hasSubmenu && (
-            <ChevronRight className={`size-3 transition-transform duration-200 ${!active ? 'text-muted-foreground/0 group-hover:text-muted-foreground/50 -translate-x-1 group-hover:translate-x-0' : 'opacity-50'}`} />
-          )}
-        </div>
-      )}
-    </a>
-  );
-}

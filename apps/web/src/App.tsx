@@ -23,7 +23,15 @@ export function App() {
         <Route path="/" element={<DashboardLayout />}>
           <Route index element={<Navigate to="/dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
-          {/* Add more routes here like /settings, /profile, etc. */}
+          <Route path="user-behavior" element={<Dashboard />} />
+          <Route path="audience" element={<Dashboard />} />
+          <Route path="traffic" element={<Dashboard />} />
+          <Route path="engagement" element={<Dashboard />} />
+          <Route path="reports" element={<Dashboard />} />
+          <Route path="errors" element={<Dashboard />} />
+          <Route path="surveys" element={<Dashboard />} />
+          <Route path="export" element={<Dashboard />} />
+          <Route path="integrations" element={<Dashboard />} />
         </Route>
       </Routes>
       <CookieConsent />
