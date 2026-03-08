@@ -20,7 +20,6 @@ import {
   Upload,
   Link as LinkIcon,
   ChevronRight,
-  Menu,
   Settings,
   X,
   CreditCard,
@@ -31,7 +30,6 @@ import {
 } from 'lucide-react';
 
 export function App() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isActivitySidebarOpen, setIsActivitySidebarOpen] = useState(false);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
@@ -57,29 +55,6 @@ export function App() {
         </div>
       </aside>
 
-      {/* Mobile Sidebar Overlay */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <div className="fixed inset-0 z-50 flex md:hidden">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50"
-              onClick={() => setIsMobileMenuOpen(false)}
-            />
-            <motion.aside
-              initial={{ x: '-100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
-              className="relative w-64 max-w-[80%] bg-card h-full flex flex-col shadow-xl"
-            >
-              <SidebarContent />
-            </motion.aside>
-          </div>
-        )}
-      </AnimatePresence>
 
       {/* Main Content */}
       <div className="flex flex-1 flex-col min-w-0">
@@ -88,17 +63,22 @@ export function App() {
           <div className="flex h-14 items-center justify-between rounded-xl border bg-card px-4 shadow-sm">
             <div className="flex items-center gap-2 sm:gap-4">
               <button
-                className="md:hidden p-2 -ml-2 text-muted-foreground hover:text-foreground rounded-md hover:bg-accent"
-                onClick={() => setIsMobileMenuOpen(true)}
-              >
-                <Menu className="size-5" />
-              </button>
-              <button
                 className="hidden md:flex p-2 -ml-2 text-muted-foreground hover:text-foreground rounded-md hover:bg-accent"
                 onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
               >
                 <PanelLeft className="size-5" />
               </button>
+              <div className="flex md:hidden size-8 shrink-0 items-center justify-center rounded-full text-primary">
+                <svg width="1em" height="1em" viewBox="0 0 328 329" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-8">
+                  <rect y="0.5" width="328" height="328" rx="164" fill="currentColor"></rect>
+                  <path d="M165.018 72.3008V132.771C165.018 152.653 148.9 168.771 129.018 168.771H70.2288" stroke="white" strokeWidth="20"></path>
+                  <path d="M166.627 265.241L166.627 204.771C166.627 184.889 182.744 168.771 202.627 168.771L261.416 168.771" stroke="white" strokeWidth="20"></path>
+                  <line x1="238.136" y1="98.8184" x2="196.76" y2="139.707" stroke="white" strokeWidth="20"></line>
+                  <line x1="135.688" y1="200.957" x2="94.3128" y2="241.845" stroke="white" strokeWidth="20"></line>
+                  <line x1="133.689" y1="137.524" x2="92.5566" y2="96.3914" stroke="white" strokeWidth="20"></line>
+                  <line x1="237.679" y1="241.803" x2="196.547" y2="200.671" stroke="white" strokeWidth="20"></line>
+                </svg>
+              </div>
               <div className="hidden md:block h-4 w-px bg-border mx-1" />
               <div
                 className="flex items-center text-muted-foreground hover:text-foreground cursor-pointer group"
@@ -128,7 +108,7 @@ export function App() {
         </header>
 
         {/* Main */}
-        <main className="flex-1 p-4 sm:p-6 flex flex-col">
+        <main className="flex-1 p-4 pb-28 md:p-6 flex flex-col">
           <div className="flex-1 rounded-xl border bg-card p-6 shadow-sm">
             <div className="h-full w-full rounded-md border min-h-[400px]" style={{
               backgroundImage: 'repeating-linear-gradient(45deg, var(--color-muted), var(--color-muted) 1px, var(--color-card) 2px, var(--color-card) 15px)'
@@ -137,7 +117,7 @@ export function App() {
         </main>
 
         {/* Footer */}
-        <footer className="flex flex-col sm:flex-row items-center justify-between gap-4 px-4 sm:px-6 pb-6 text-sm text-muted-foreground">
+        <footer className="hidden md:flex flex-col sm:flex-row items-center justify-between gap-4 px-4 sm:px-6 pb-6 text-sm text-muted-foreground">
           <p>©2026 <a href="#" className="text-primary hover:underline">shadcn/studio</a>, Made for better web design</p>
           <div className="flex items-center gap-4">
             <a href="#" className="hover:text-primary">License</a>
@@ -147,6 +127,25 @@ export function App() {
           </div>
         </footer>
       </div>
+
+      {/* Mobile Floating Bottom Nav */}
+      <nav className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex h-16 w-[calc(100%-2rem)] max-w-md items-center justify-around rounded-xl border bg-card/80 backdrop-blur-md px-2 shadow-xl">
+        <a href="#" className="flex flex-col items-center justify-center p-3 text-primary transition-transform active:scale-95">
+          <ChartColumnBig className="size-6" />
+        </a>
+        <a href="#" className="flex flex-col items-center justify-center p-3 text-muted-foreground hover:text-foreground transition-all active:scale-95">
+          <User className="size-6" />
+        </a>
+        <a href="#" className="flex flex-col items-center justify-center p-3 text-muted-foreground hover:text-foreground transition-all active:scale-95">
+          <Users className="size-6" />
+        </a>
+        <a href="#" className="flex flex-col items-center justify-center p-3 text-muted-foreground hover:text-foreground transition-all active:scale-95">
+          <TrendingUp className="size-6" />
+        </a>
+        <a href="#" className="flex flex-col items-center justify-center p-3 text-muted-foreground hover:text-foreground transition-all active:scale-95">
+          <ClipboardList className="size-6" />
+        </a>
+      </nav>
 
       {/* Activity Sidebar Overlay */}
       <AnimatePresence>
@@ -613,8 +612,8 @@ function NavItem({ icon, label, badge, active, hasSubmenu, collapsed }: { icon: 
     <a
       href="#"
       className={`flex items-center ${collapsed ? 'justify-center p-2' : 'justify-between px-3 py-2'} rounded-md text-sm transition-colors ${active
-          ? 'text-foreground font-medium bg-accent'
-          : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+        ? 'text-foreground font-medium bg-accent'
+        : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
         }`}
       title={collapsed ? label : undefined}
     >
