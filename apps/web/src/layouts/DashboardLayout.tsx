@@ -46,9 +46,14 @@ export function DashboardLayout() {
     <div className="flex min-h-screen w-full bg-background font-sans">
       {/* Sidebar (Desktop) */}
       <aside className={`hidden md:flex ${isSidebarCollapsed ? 'w-[4.5rem]' : 'w-[17.5rem]'} shrink-0 flex-col p-6 pr-0 sticky top-0 h-screen transition-all duration-300`}>
-        <div className="flex h-full w-full flex-col rounded-xl border bg-card shadow-sm overflow-hidden">
+        <motion.div
+          initial={{ x: -20, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+          className="flex h-full w-full flex-col rounded-xl border bg-card shadow-sm overflow-hidden"
+        >
           <Sidebar collapsed={isSidebarCollapsed} />
-        </div>
+        </motion.div>
       </aside>
 
 
@@ -56,7 +61,12 @@ export function DashboardLayout() {
       <div className="flex flex-1 flex-col min-w-0">
         {/* Header */}
         <header className="sticky top-0 z-40 pt-6 px-4 sm:px-6">
-          <div className="flex h-14 items-center justify-between rounded-xl border bg-card px-4 shadow-sm">
+          <motion.div
+            initial={{ y: -10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="flex h-14 items-center justify-between rounded-xl border bg-card px-4 shadow-sm"
+          >
             <div className="flex items-center gap-2 sm:gap-4">
               <button
                 className="hidden md:flex p-2 -ml-2 text-muted-foreground hover:text-foreground rounded-md hover:bg-accent"
@@ -94,16 +104,26 @@ export function DashboardLayout() {
               <NotificationDropdown />
               <ProfileDropdown />
             </div>
-          </div>
+          </motion.div>
         </header>
 
         {/* Main */}
-        <main className="flex-1 p-4 sm:px-6 pb-28 md:p-6 flex flex-col">
+        <motion.main
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+          className="flex-1 p-4 sm:px-6 pb-28 md:p-6 flex flex-col"
+        >
           <Outlet />
-        </main>
+        </motion.main>
 
         {/* Footer */}
-        <footer className="hidden md:flex flex-col sm:flex-row items-center justify-between gap-4 px-4 sm:px-6 pb-6 text-sm text-muted-foreground">
+        <motion.footer
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="hidden md:flex flex-col sm:flex-row items-center justify-between gap-4 px-4 sm:px-6 pb-6 text-sm text-muted-foreground"
+        >
           <p>©2026 <a href="#" className="text-primary hover:underline">shadcn/studio</a>, Made for better web design</p>
           <div className="flex items-center gap-4">
             <a href="#" className="hover:text-primary">License</a>
@@ -111,7 +131,7 @@ export function DashboardLayout() {
             <a href="#" className="hover:text-primary">Documentation</a>
             <a href="#" className="hover:text-primary">Support</a>
           </div>
-        </footer>
+        </motion.footer>
       </div>
 
       <BottomNav />
