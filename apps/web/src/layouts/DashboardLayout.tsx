@@ -91,7 +91,7 @@ export function DashboardLayout() {
                 onClick={() => setIsCommandPaletteOpen(true)}
               >
                 <Search className="size-4 mr-2" />
-                <span className="text-sm inline-block mr-2">Search here...</span>
+                <span className="text-sm hidden sm:inline-block mr-2">Search here...</span>
                 <kbd className="pointer-events-none hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
                   <span className="text-xs">⌘</span>K
                 </kbd>
@@ -167,7 +167,7 @@ function ActivityDropdown() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -4 }}
               transition={{ duration: 0.15, ease: "easeOut" }}
-              className="absolute -right-32 sm:right-0 top-full mt-2 w-96 z-50 rounded-2xl border bg-card shadow-xl shadow-black/5 overflow-hidden flex flex-col"
+              className="fixed inset-x-4 top-[5.5rem] sm:absolute sm:inset-auto sm:right-0 sm:top-full sm:mt-2 w-auto sm:w-96 z-50 rounded-2xl border bg-card shadow-xl shadow-black/5 overflow-hidden flex flex-col"
             >
               {/* Header */}
               <div className="sticky top-0 z-10 bg-card/80 backdrop-blur-md border-b border-border/50 px-4 py-3 flex items-center justify-between">
@@ -380,7 +380,7 @@ function NotificationDropdown() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -4 }}
               transition={{ duration: 0.15, ease: "easeOut" }}
-              className="absolute -right-12 sm:right-0 top-full mt-2 w-96 z-50 rounded-2xl border bg-card shadow-xl shadow-black/5 overflow-hidden flex flex-col"
+              className="fixed inset-x-4 top-[5.5rem] sm:absolute sm:inset-auto sm:right-0 sm:top-full sm:mt-2 w-auto sm:w-96 z-50 rounded-2xl border bg-card shadow-xl shadow-black/5 overflow-hidden flex flex-col"
             >
               {/* Header with Switcher */}
               <div className="sticky top-0 z-10 bg-card/80 backdrop-blur-md border-b border-border/50 px-4 pt-4 pb-0 flex flex-col gap-4">
