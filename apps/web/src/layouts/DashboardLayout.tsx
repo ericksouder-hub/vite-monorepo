@@ -32,7 +32,6 @@ import {
 
 export function DashboardLayout() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-  const [isActivitySidebarOpen, setIsActivitySidebarOpen] = useState(false);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
 
   useEffect(() => {
@@ -95,13 +94,7 @@ export function DashboardLayout() {
 
             <div className="flex items-center gap-1.5">
               <ModeToggle />
-              <button
-                className="p-2 text-muted-foreground hover:text-foreground rounded-md hover:bg-accent"
-                onClick={() => setIsActivitySidebarOpen(true)}
-              >
-                <Activity className="size-5" />
-              </button>
-
+              <ActivityDropdown />
               <NotificationDropdown />
               <ProfileDropdown />
             </div>
@@ -144,29 +137,7 @@ export function DashboardLayout() {
         </a>
       </nav>
 
-      {/* Activity Sidebar Overlay */}
-      <AnimatePresence>
-        {isActivitySidebarOpen && (
-          <div className="fixed inset-0 z-50 flex justify-end">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50"
-              onClick={() => setIsActivitySidebarOpen(false)}
-            />
-            <motion.aside
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
-              className="relative w-[400px] max-w-full bg-card h-full flex flex-col shadow-xl"
-            >
-              <ActivitySidebar onClose={() => setIsActivitySidebarOpen(false)} />
-            </motion.aside>
-          </div>
-        )}
-      </AnimatePresence>
+
 
       <CommandPalette
         isOpen={isCommandPaletteOpen}
@@ -176,123 +147,144 @@ export function DashboardLayout() {
   );
 }
 
-function ActivitySidebar({ onClose }: { onClose: () => void }) {
-  return (
-    <div className="flex flex-col h-full">
-      <div className="flex flex-col gap-1.5 p-4 border-b py-2.5 relative">
-        <h2 className="text-foreground font-semibold text-lg leading-6">Activity</h2>
-        <button
-          onClick={onClose}
-          className="ring-offset-background focus:ring-ring absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden"
-        >
-          <X className="size-4" />
-          <span className="sr-only">Close</span>
-        </button>
-      </div>
-      <div className="overflow-y-auto flex-1">
+function ActivityDropdown() {
+  const [isOpen, setIsOpen] = useState(false);
 
-        {/* Item 1 */}
-        <div className="flex gap-4 px-4 py-3">
-          <span className="relative flex size-8 shrink-0 overflow-hidden rounded-full">
-            <img className="aspect-square size-full" src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-1.png" alt="Joe Lincoln" />
-          </span>
-          <div className="flex w-full flex-col items-start gap-2.5">
-            <div className="text-muted-foreground flex flex-col items-start text-sm">
-              <p><span className="text-foreground font-semibold">Joe Lincoln</span> mentioned you in last trends topic</p>
-              <p>18 mins ago</p>
-            </div>
-            <div className="bg-muted flex flex-col gap-4 rounded-md border px-4 py-2.5 w-full">
-              <p className="text-sm font-medium">@ShadcnStudio For an expert opinion, check out what Mike has to say on this topic!</p>
-              <div className="relative">
-                <input className="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground border-input h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] bg-card pr-9 md:text-sm" placeholder="Reply" />
-                <div className="text-muted-foreground pointer-events-none absolute inset-y-0 right-0 flex items-center justify-center pr-3">
-                  <ImageIcon className="size-4" />
+  return (
+    <div className="relative">
+      <button
+        className="p-2 text-muted-foreground hover:text-foreground rounded-md hover:bg-accent relative"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <Activity className="size-5" />
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="absolute -right-16 sm:right-0 top-full mt-2 w-80 sm:w-[28rem] z-50 rounded-xl border bg-card shadow-lg overflow-hidden flex flex-col"
+            >
+              <div className="flex flex-col pb-0 px-2 py-1.5 text-sm font-medium">
+                <div className="flex items-center justify-between gap-6 pb-2.5 pt-2 px-2">
+                  <span className="text-muted-foreground text-base font-normal uppercase">Activity</span>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div className="bg-border h-px w-full shrink-0"></div>
+              <div className="bg-border h-px w-full shrink-0"></div>
 
-        {/* Item 2 */}
-        <div className="flex gap-4 px-4 py-3">
-          <span className="relative flex size-8 shrink-0 overflow-hidden rounded-full">
-            <img className="aspect-square size-full" src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-2.png" alt="Jane Perez" />
-          </span>
-          <div className="flex w-full flex-col items-start gap-2.5">
-            <div className="text-muted-foreground flex flex-col items-start text-sm">
-              <p><span className="text-foreground font-semibold">Jane Perez</span> invites you to review a file</p>
-              <p>39 mins ago</p>
-            </div>
-            <div className="bg-muted flex items-center gap-1 rounded-md px-1.5 py-1">
-              <img alt="invoices.pdf" className="h-5" src="https://cdn.shadcnstudio.com/ss-assets/blocks/dashboard-application/dashboard-dialog/image-14.png" />
-              <span className="text-sm font-medium">invoices.pdf</span>
-            </div>
-          </div>
-        </div>
-        <div className="bg-border h-px w-full shrink-0"></div>
+              <div className="flex flex-col max-h-[60vh] overflow-y-auto">
 
-        {/* Item 3 */}
-        <div className="flex gap-4 px-4 py-3">
-          <span className="relative flex size-8 shrink-0 overflow-hidden rounded-full">
-            <img className="aspect-square size-full" src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-3.png" alt="Tyler Hero" />
-          </span>
-          <div className="flex w-full flex-col items-start gap-2.5">
-            <div className="text-muted-foreground flex flex-col items-start text-sm">
-              <p><span className="text-foreground font-semibold">Tyler Hero</span> wants to view your design project</p>
-              <p>1 hour ago</p>
-            </div>
-            <div className="bg-muted flex w-full items-center gap-4 rounded-md border px-4 py-2.5">
-              <img alt="Launcher-Uikit.fig" className="size-8 rounded-sm" src="https://cdn.shadcnstudio.com/ss-assets/blocks/dashboard-application/dashboard-dialog/image-13.png" />
-              <span className="text-sm font-medium">Launcher-Uikit.fig</span>
-            </div>
-          </div>
-        </div>
-        <div className="bg-border h-px w-full shrink-0"></div>
+                {/* Item 1 */}
+                <div className="flex gap-4 px-4 py-3">
+                  <span className="relative flex size-8 shrink-0 overflow-hidden rounded-full">
+                    <img className="aspect-square size-full" src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-1.png" alt="Joe Lincoln" />
+                  </span>
+                  <div className="flex w-full flex-col items-start gap-2.5">
+                    <div className="text-muted-foreground flex flex-col items-start text-sm">
+                      <p><span className="text-foreground font-semibold">Joe Lincoln</span> mentioned you in last trends topic</p>
+                      <p>18 mins ago</p>
+                    </div>
+                    <div className="bg-muted flex flex-col gap-4 rounded-md border px-4 py-2.5 w-full">
+                      <p className="text-sm font-medium">@ShadcnStudio For an expert opinion, check out what Mike has to say on this topic!</p>
+                      <div className="relative">
+                        <input className="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground border-input h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] bg-card pr-9 md:text-sm" placeholder="Reply" />
+                        <div className="text-muted-foreground pointer-events-none absolute inset-y-0 right-0 flex items-center justify-center pr-3">
+                          <ImageIcon className="size-4" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-border h-px w-full shrink-0"></div>
 
-        {/* Item 4 */}
-        <div className="flex gap-4 px-4 py-3">
-          <span className="relative flex size-8 shrink-0 overflow-hidden rounded-full">
-            <img className="aspect-square size-full" src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-5.png" alt="Denial" />
-          </span>
-          <div className="text-muted-foreground flex flex-col items-start text-sm">
-            <p><span className="text-foreground font-semibold">Denial</span> invites you to review the new design</p>
-            <p>3 hours ago</p>
-          </div>
-        </div>
-        <div className="bg-border h-px w-full shrink-0"></div>
+                {/* Item 2 */}
+                <div className="flex gap-4 px-4 py-3">
+                  <span className="relative flex size-8 shrink-0 overflow-hidden rounded-full">
+                    <img className="aspect-square size-full" src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-2.png" alt="Jane Perez" />
+                  </span>
+                  <div className="flex w-full flex-col items-start gap-2.5">
+                    <div className="text-muted-foreground flex flex-col items-start text-sm">
+                      <p><span className="text-foreground font-semibold">Jane Perez</span> invites you to review a file</p>
+                      <p>39 mins ago</p>
+                    </div>
+                    <div className="bg-muted flex items-center gap-1 rounded-md px-1.5 py-1">
+                      <img alt="invoices.pdf" className="h-5" src="https://cdn.shadcnstudio.com/ss-assets/blocks/dashboard-application/dashboard-dialog/image-14.png" />
+                      <span className="text-sm font-medium">invoices.pdf</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-border h-px w-full shrink-0"></div>
 
-        {/* Item 5 */}
-        <div className="flex gap-4 px-4 py-3">
-          <span className="relative flex size-8 shrink-0 overflow-hidden rounded-full">
-            <img className="aspect-square size-full" src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-6.png" alt="Leslie Alexander" />
-          </span>
-          <div className="flex w-full flex-col items-start gap-2.5">
-            <div className="text-muted-foreground flex flex-col items-start text-sm">
-              <p><span className="text-foreground font-semibold">Leslie Alexander</span> new tags to Web Redesign</p>
-              <p>8 hours ago</p>
-            </div>
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden border border-transparent px-2 py-0.5 text-xs whitespace-nowrap bg-primary/10 text-primary rounded-sm font-normal">Client-Request</span>
-              <span className="inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden border border-transparent px-2 py-0.5 text-xs whitespace-nowrap rounded-sm bg-sky-600/10 font-normal text-sky-600">Figma</span>
-              <span className="inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden border border-transparent px-2 py-0.5 text-xs whitespace-nowrap rounded-sm bg-amber-600/10 font-normal text-amber-600">Redesign</span>
-            </div>
-          </div>
-        </div>
-        <div className="bg-border h-px w-full shrink-0"></div>
+                {/* Item 3 */}
+                <div className="flex gap-4 px-4 py-3">
+                  <span className="relative flex size-8 shrink-0 overflow-hidden rounded-full">
+                    <img className="aspect-square size-full" src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-3.png" alt="Tyler Hero" />
+                  </span>
+                  <div className="flex w-full flex-col items-start gap-2.5">
+                    <div className="text-muted-foreground flex flex-col items-start text-sm">
+                      <p><span className="text-foreground font-semibold">Tyler Hero</span> wants to view your design project</p>
+                      <p>1 hour ago</p>
+                    </div>
+                    <div className="bg-muted flex w-full items-center gap-4 rounded-md border px-4 py-2.5">
+                      <img alt="Launcher-Uikit.fig" className="size-8 rounded-sm" src="https://cdn.shadcnstudio.com/ss-assets/blocks/dashboard-application/dashboard-dialog/image-13.png" />
+                      <span className="text-sm font-medium">Launcher-Uikit.fig</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-border h-px w-full shrink-0"></div>
 
-        {/* Item 6 */}
-        <div className="flex gap-4 px-4 py-3">
-          <span className="relative flex size-8 shrink-0 overflow-hidden rounded-full">
-            <img className="aspect-square size-full" src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-8.png" alt="Miya" />
-          </span>
-          <div className="text-muted-foreground flex flex-col items-start text-sm">
-            <p><span className="text-foreground font-semibold">Miya</span> invites you to review a file</p>
-            <p>10 hours ago</p>
-          </div>
-        </div>
+                {/* Item 4 */}
+                <div className="flex gap-4 px-4 py-3">
+                  <span className="relative flex size-8 shrink-0 overflow-hidden rounded-full">
+                    <img className="aspect-square size-full" src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-5.png" alt="Denial" />
+                  </span>
+                  <div className="text-muted-foreground flex flex-col items-start text-sm">
+                    <p><span className="text-foreground font-semibold">Denial</span> invites you to review the new design</p>
+                    <p>3 hours ago</p>
+                  </div>
+                </div>
+                <div className="bg-border h-px w-full shrink-0"></div>
 
-      </div>
+                {/* Item 5 */}
+                <div className="flex gap-4 px-4 py-3">
+                  <span className="relative flex size-8 shrink-0 overflow-hidden rounded-full">
+                    <img className="aspect-square size-full" src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-6.png" alt="Leslie Alexander" />
+                  </span>
+                  <div className="flex w-full flex-col items-start gap-2.5">
+                    <div className="text-muted-foreground flex flex-col items-start text-sm">
+                      <p><span className="text-foreground font-semibold">Leslie Alexander</span> new tags to Web Redesign</p>
+                      <p>8 hours ago</p>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden border border-transparent px-2 py-0.5 text-xs whitespace-nowrap bg-primary/10 text-primary rounded-sm font-normal">Client-Request</span>
+                      <span className="inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden border border-transparent px-2 py-0.5 text-xs whitespace-nowrap rounded-sm bg-sky-600/10 font-normal text-sky-600">Figma</span>
+                      <span className="inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden border border-transparent px-2 py-0.5 text-xs whitespace-nowrap rounded-sm bg-amber-600/10 font-normal text-amber-600">Redesign</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-border h-px w-full shrink-0"></div>
+
+                {/* Item 6 */}
+                <div className="flex gap-4 px-4 py-3 hover:bg-accent transition-colors">
+                  <span className="relative flex size-8 shrink-0 overflow-hidden rounded-full">
+                    <img className="aspect-square size-full" src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-8.png" alt="Miya" />
+                  </span>
+                  <div className="text-muted-foreground flex flex-col items-start text-sm">
+                    <p><span className="text-foreground font-semibold">Miya</span> invites you to review a file</p>
+                    <p>10 hours ago</p>
+                  </div>
+                </div>
+
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
@@ -421,7 +413,7 @@ function NotificationDropdown() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -10 }}
               transition={{ duration: 0.2 }}
-              className="absolute right-0 top-full mt-2 w-80 sm:w-[28rem] z-50 rounded-xl border bg-card shadow-lg overflow-hidden flex flex-col"
+              className="absolute -right-8 sm:right-0 top-full mt-2 w-80 sm:w-[28rem] z-50 rounded-xl border bg-card shadow-lg overflow-hidden flex flex-col"
             >
               <div className="flex flex-col pb-0 px-2 py-1.5 text-sm font-medium">
                 <div className="flex items-center justify-between gap-6 pb-2.5 pt-2 px-2">
