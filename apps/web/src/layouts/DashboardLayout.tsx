@@ -551,7 +551,7 @@ function SidebarContent({ collapsed }: { collapsed?: boolean }) {
             <line x1="237.679" y1="241.803" x2="196.547" y2="200.671" stroke="white" strokeWidth="20"></line>
           </svg>
         </div>
-        {!collapsed && <span className="text-xl font-semibold text-foreground truncate">Analytics</span>}
+        {!collapsed && <span className="text-xl font-semibold text-foreground truncate">Ava</span>}
       </div>
 
       <div className={`flex-1 overflow-y-auto overflow-x-hidden ${collapsed ? 'p-2' : 'p-3'}`}>

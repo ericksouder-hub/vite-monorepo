@@ -6,6 +6,9 @@ import { Login } from './pages/Login';
 import { SignUp } from './pages/SignUp';
 import { ForgotPassword } from './pages/ForgotPassword';
 import { ResetPassword } from './pages/ResetPassword';
+import { CheckEmail } from './pages/CheckEmail';
+import { Success } from './pages/Success';
+import { CookieConsent } from './components/CookieConsent';
 
 export function App() {
   return (
@@ -15,12 +18,15 @@ export function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/check-email" element={<CheckEmail />} />
+        <Route path="/success" element={<Success />} />
         <Route path="/" element={<DashboardLayout />}>
           <Route index element={<Navigate to="/dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
           {/* Add more routes here like /settings, /profile, etc. */}
         </Route>
       </Routes>
+      <CookieConsent />
     </BrowserRouter>
   );
 }
