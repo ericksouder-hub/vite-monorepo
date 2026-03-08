@@ -40,6 +40,10 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
     setRecentItems([]);
   };
 
+  const removeRecent = (id: string) => {
+    setRecentItems(prev => prev.filter(i => i.id !== id));
+  };
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -128,9 +132,17 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
                             <span className="font-bold tracking-tight text-foreground/80">{item.label}</span>
                             <span className="text-[9px] font-bold text-muted-foreground/40 uppercase tracking-widest">{item.type}</span>
                           </div>
-                          <div className="ml-auto opacity-0 group-aria-selected:opacity-100 transition-opacity flex items-center gap-2">
-                            <span className="text-[10px] font-medium text-muted-foreground/40">Jump to</span>
-                            <CornerDownLeft className="size-3 text-muted-foreground/30" />
+                          <div className="ml-auto transition-opacity">
+                            <button
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                removeRecent(item.id);
+                              }}
+                              className="p-1.5 hover:bg-destructive/10 hover:text-destructive rounded-lg transition-colors"
+                            >
+                              <X className="size-3.5" />
+                            </button>
                           </div>
                         </Command.Item>
                       ))}
