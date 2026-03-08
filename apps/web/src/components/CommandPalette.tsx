@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Users, ShoppingCart, LayoutDashboard, X, CornerDownLeft, ArrowUp, ArrowDown, MoreVertical, ChevronRight, Clock, Trash2 } from 'lucide-react';
+import { Search, Users, ShoppingCart, LayoutDashboard, X, CornerDownLeft, ArrowUp, ArrowDown, MoreVertical, ChevronRight, Clock, Trash2, Settings } from 'lucide-react';
 import { Command } from 'cmdk';
 
 interface CommandPaletteProps {
@@ -196,6 +196,22 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
                       <LayoutDashboard className="size-4" />
                     </div>
                     <span className="font-semibold tracking-tight">Dashboard UI Page</span>
+                    <div className="ml-auto opacity-0 group-aria-selected:opacity-100 transition-opacity">
+                      <CornerDownLeft className="size-3 text-muted-foreground/50" />
+                    </div>
+                  </Command.Item>
+                  <Command.Item
+                    onSelect={() => {
+                      // Navigate to settings
+                      window.location.href = '/settings';
+                      onClose();
+                    }}
+                    className="group relative flex cursor-default select-none items-center rounded-xl px-3 py-1.5 text-sm outline-none aria-selected:bg-accent/50 aria-selected:text-accent-foreground transition-all duration-200"
+                  >
+                    <div className="flex size-8 items-center justify-center rounded-lg bg-primary/5 text-primary group-aria-selected:bg-primary/10 transition-colors mr-3">
+                      <Settings className="size-4" />
+                    </div>
+                    <span className="font-semibold tracking-tight">Settings</span>
                     <div className="ml-auto opacity-0 group-aria-selected:opacity-100 transition-opacity">
                       <CornerDownLeft className="size-3 text-muted-foreground/50" />
                     </div>

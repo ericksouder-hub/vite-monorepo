@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 import { useTheme } from '@/components/theme-provider';
 import { CommandPalette } from '../components/CommandPalette';
 import {
@@ -45,7 +45,7 @@ export function DashboardLayout() {
   return (
     <div className="flex min-h-screen w-full bg-background font-sans">
       {/* Sidebar (Desktop) */}
-      <aside className={`hidden md:flex ${isSidebarCollapsed ? 'w-[4.5rem]' : 'w-[17.5rem]'} shrink-0 flex-col p-6 pr-0 sticky top-0 h-screen transition-all duration-300`}>
+      <aside className={`hidden md:flex ${isSidebarCollapsed ? 'w-[4.5rem]' : 'w-[17.5rem]'} shrink-0 flex-col p-6 pr-0 sticky top-0 h-screen transition-all duration-300 z-50`}>
         <motion.div
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -297,9 +297,9 @@ function ProfileDropdown() {
                 <div className="space-y-1">
                   <div className="px-3 pb-1 text-[10px] font-bold text-muted-foreground/60 uppercase tracking-widest">Account</div>
                   <nav className="space-y-0.5">
-                    <DropdownItem icon={<User className="size-4" />} label="My profile" />
-                    <DropdownItem icon={<Settings className="size-4" />} label="Security" />
-                    <DropdownItem icon={<CreditCard className="size-4" />} label="Plans & Billing" />
+                    <DropdownItem icon={<User className="size-4" />} label="My profile" to="/settings#personal-info" />
+                    <DropdownItem icon={<Settings className="size-4" />} label="Security" to="/settings#email-password" />
+                    <DropdownItem icon={<CreditCard className="size-4" />} label="Plans & Billing" to="/settings" />
                   </nav>
                 </div>
 
@@ -332,12 +332,28 @@ function ProfileDropdown() {
   );
 }
 
-function DropdownItem({ icon, label }: { icon: React.ReactNode, label: string }) {
-  return (
-    <button className="group relative flex w-full cursor-pointer items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-foreground/80 hover:bg-accent hover:text-foreground transition-all duration-200">
+function DropdownItem({ icon, label, to }: { icon: React.ReactNode, label: string, to?: string }) {
+  const content = (
+    <>
       <div className="shrink-0 transition-transform group-hover:scale-110 duration-200">{icon}</div>
       <span className="flex-1 text-left font-medium">{label}</span>
       <ChevronRight className="size-3 text-muted-foreground/0 group-hover:text-muted-foreground/50 transition-all -translate-x-1 group-hover:translate-x-0" />
+    </>
+  );
+
+  const className = "group relative flex w-full cursor-pointer items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-foreground/80 hover:bg-accent hover:text-foreground transition-all duration-200";
+
+  if (to) {
+    return (
+      <Link to={to} className={className}>
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <button className={className}>
+      {content}
     </button>
   );
 }

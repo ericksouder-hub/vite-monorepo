@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { DashboardLayout } from './layouts/DashboardLayout';
 import { Dashboard } from './pages/Dashboard';
+import { Settings } from './pages/Settings';
 
 import { Login } from './pages/Login';
 import { SignUp } from './pages/SignUp';
@@ -32,6 +33,7 @@ export function App() {
           <Route path="surveys" element={<Dashboard />} />
           <Route path="export" element={<Dashboard />} />
           <Route path="integrations" element={<Dashboard />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>
       <CookieConsent />

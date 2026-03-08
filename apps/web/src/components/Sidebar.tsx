@@ -12,7 +12,8 @@ import {
     Upload,
     Link as LinkIcon,
     ChevronRight,
-    Sparkles
+    Sparkles,
+    Settings
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { SidebarPromo } from './SidebarPromo';
@@ -99,6 +100,7 @@ export function Sidebar({ collapsed }: SidebarProps) {
                     <NavItem icon={<ClipboardList className="size-4" />} label="Custom Reports" to="/reports" hasSubmenu collapsed={collapsed} />
                     <NavItem icon={<TriangleAlert className="size-4" />} label="Error Logs" to="/errors" collapsed={collapsed} />
                     <NavItem icon={<SquareCheckBig className="size-4" />} label="Survey Results" to="/surveys" collapsed={collapsed} />
+                    <NavItem icon={<Settings className="size-4" />} label="Settings" to="/settings" collapsed={collapsed} />
 
                     {!collapsed ? (
                         <div className="mt-6 mb-2 px-3 text-[10px] font-bold text-muted-foreground/60 uppercase tracking-widest truncate">Visualization</div>
