@@ -27,8 +27,10 @@ import {
   SquarePen,
   CirclePlus,
   LogOut,
-  Image as ImageIcon
+  Image as ImageIcon,
+  Sparkles
 } from 'lucide-react';
+import { SidebarPromo } from '../components/SidebarPromo';
 
 export function DashboardLayout() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -583,13 +585,18 @@ function SidebarContent({ collapsed }: { collapsed?: boolean }) {
 
       {!collapsed && (
         <div className="p-4 mt-auto">
-          <div className="flex flex-col items-start gap-4 p-2">
-            <h4 className="text-xl font-semibold text-foreground">Go to Premium</h4>
-            <p className="text-sm text-foreground">Explore 600+ courses with<br />lifetime membership</p>
-            <button className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors">
-              Upgrade
-            </button>
-          </div>
+          <SidebarPromo
+            variant="premium"
+            icon={<Sparkles className="size-4" />}
+            title="Upgrade to Premium"
+            description={
+              <>
+                Get lifetime access to 600+<br />expert-led courses today.
+              </>
+            }
+            actionText="Upgrade Now"
+            onAction={() => console.log('Upgrade clicked')}
+          />
         </div>
       )}
     </>
