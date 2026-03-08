@@ -81,11 +81,11 @@ export function App() {
               </div>
               <div className="hidden md:block h-4 w-px bg-border mx-1" />
               <div
-                className="flex items-center text-muted-foreground hover:text-foreground cursor-pointer group"
+                className="flex items-center text-muted-foreground hover:text-foreground cursor-pointer group ml-2 sm:ml-0"
                 onClick={() => setIsCommandPaletteOpen(true)}
               >
                 <Search className="size-4 mr-2" />
-                <span className="text-sm hidden sm:inline-block mr-2">Search here...</span>
+                <span className="text-sm inline-block mr-2">Search here...</span>
                 <kbd className="pointer-events-none hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
                   <span className="text-xs">⌘</span>K
                 </kbd>
