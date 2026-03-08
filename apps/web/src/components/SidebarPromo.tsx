@@ -43,7 +43,7 @@ export function SidebarPromo({
             {onClose && (
                 <button
                     onClick={onClose}
-                    className="absolute top-3 right-3 p-1 text-muted-foreground hover:text-foreground opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute top-3 right-3 p-1 text-muted-foreground/30 hover:text-foreground opacity-100 transition-colors"
                     aria-label={`Dismiss ${title}`}
                 >
                     <X className="size-3.5" />
