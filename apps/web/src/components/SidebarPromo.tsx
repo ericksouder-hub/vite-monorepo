@@ -51,11 +51,11 @@ export function SidebarPromo({
             )}
 
             <div className="flex items-center gap-2">
-                {icon && <div className="text-primary">{icon}</div>}
-                <h4 className="text-sm font-bold text-foreground leading-tight text-balance">{title}</h4>
+                {icon && <div className="text-primary shrink-0">{icon}</div>}
+                <h4 className="text-[13px] font-bold text-foreground leading-tight tracking-tight text-balance">{title}</h4>
             </div>
 
-            <div className="text-xs text-muted-foreground group-hover:text-foreground/80 transition-colors leading-relaxed text-balance">
+            <div className="text-[11px] font-medium text-muted-foreground group-hover:text-foreground/80 transition-colors leading-normal text-balance">
                 {description}
             </div>
 

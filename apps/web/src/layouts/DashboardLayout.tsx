@@ -245,7 +245,7 @@ function ActivityDropdown() {
 
               {/* Unique Footer */}
               <div className="p-2 bg-muted/10 border-t border-border/50">
-                <button className="flex w-full items-center justify-center gap-2 py-2 px-3 rounded-xl hover:bg-accent/50 transition-all text-[10px] font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground">
+                <button className="flex w-full items-center justify-center gap-2 py-2 px-3 rounded-xl hover:bg-accent/50 transition-all text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 hover:text-foreground">
                   View full history
                   <ChevronRight className="size-3" />
                 </button>
@@ -467,14 +467,14 @@ function NotificationDropdown() {
                     <div className="flex justify-center">
                       <Sparkles className="size-8 text-muted-foreground/20" />
                     </div>
-                    <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Inbox is clear</p>
+                    <p className="text-[10px] font-bold text-muted-foreground/60 uppercase tracking-widest">Inbox is clear</p>
                   </div>
                 )}
               </div>
 
               {/* Footer */}
               <div className="p-2 bg-muted/10 border-t border-border/50">
-                <button className="flex w-full items-center justify-center gap-2 py-2 px-3 rounded-xl hover:bg-accent/50 transition-all text-[10px] font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground">
+                <button className="flex w-full items-center justify-center gap-2 py-2 px-3 rounded-xl hover:bg-accent/50 transition-all text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 hover:text-foreground">
                   See all notifications
                   <ChevronRight className="size-3" />
                 </button>
@@ -502,7 +502,7 @@ function SidebarContent({ collapsed }: { collapsed?: boolean }) {
             <line x1="237.679" y1="241.803" x2="196.547" y2="200.671" stroke="white" strokeWidth="20"></line>
           </svg>
         </div>
-        {!collapsed && <span className="text-xl font-semibold text-foreground truncate">Ava</span>}
+        {!collapsed && <span className="text-xl font-bold text-foreground tracking-tight truncate">Ava</span>}
       </div>
 
       <div className={`flex-1 overflow-y-auto overflow-x-hidden ${collapsed ? 'p-2' : 'p-3'}`}>
@@ -510,9 +510,9 @@ function SidebarContent({ collapsed }: { collapsed?: boolean }) {
           <NavItem icon={<ChartColumnBig className="size-4" />} label="Dashboard" badge="5" active collapsed={collapsed} />
 
           {!collapsed ? (
-            <div className="mt-4 mb-2 px-2 text-xs font-medium text-muted-foreground truncate">Core Pages</div>
+            <div className="mt-6 mb-2 px-3 text-[10px] font-bold text-muted-foreground/60 uppercase tracking-widest truncate">Core Pages</div>
           ) : (
-            <div className="mt-4 mb-2 px-2 text-xs font-medium text-transparent h-4"></div>
+            <div className="mt-6 mb-2 px-2 text-xs font-medium text-transparent h-4"></div>
           )}
           <NavItem icon={<User className="size-4" />} label="User Behavior" collapsed={collapsed} />
           <NavItem icon={<Users className="size-4" />} label="Audience" collapsed={collapsed} />
@@ -523,9 +523,9 @@ function SidebarContent({ collapsed }: { collapsed?: boolean }) {
           <NavItem icon={<SquareCheckBig className="size-4" />} label="Survey Results" collapsed={collapsed} />
 
           {!collapsed ? (
-            <div className="mt-4 mb-2 px-2 text-xs font-medium text-muted-foreground truncate">Visualization</div>
+            <div className="mt-6 mb-2 px-3 text-[10px] font-bold text-muted-foreground/60 uppercase tracking-widest truncate">Visualization</div>
           ) : (
-            <div className="mt-4 mb-2 px-2 text-xs font-medium text-transparent h-4"></div>
+            <div className="mt-6 mb-2 px-2 text-xs font-medium text-transparent h-4"></div>
           )}
           <NavItem icon={<Upload className="size-4" />} label="Data Export" collapsed={collapsed} />
           <NavItem icon={<LinkIcon className="size-4" />} label="Integrations" hasSubmenu collapsed={collapsed} />
@@ -556,25 +556,25 @@ function NavItem({ icon, label, badge, active, hasSubmenu, collapsed }: { icon: 
   return (
     <a
       href="#"
-      className={`flex items-center ${collapsed ? 'justify-center p-2' : 'justify-between px-3 py-2'} rounded-md text-sm transition-colors ${active
-        ? 'text-foreground font-medium bg-accent'
-        : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+      className={`group flex items-center ${collapsed ? 'justify-center p-2' : 'justify-between px-3 py-2'} rounded-lg text-sm transition-all duration-200 ${active
+        ? 'text-foreground font-bold bg-accent shadow-sm'
+        : 'text-foreground/80 font-medium hover:bg-accent/50 hover:text-foreground'
         }`}
       title={collapsed ? label : undefined}
     >
       <div className="flex items-center gap-3">
-        <div className="shrink-0">{icon}</div>
+        <div className={`shrink-0 transition-transform duration-200 ${!active && 'group-hover:scale-110'}`}>{icon}</div>
         {!collapsed && <span className="truncate">{label}</span>}
       </div>
       {!collapsed && (
         <div className="flex items-center gap-2">
           {badge && (
-            <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-primary/10 px-1.5 text-xs font-medium text-foreground">
+            <span className={`flex h-4.5 min-w-4.5 items-center justify-center rounded-full px-1.5 text-[10px] font-bold ${active ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'}`}>
               {badge}
             </span>
           )}
           {hasSubmenu && (
-            <ChevronRight className="size-4 opacity-50 shrink-0" />
+            <ChevronRight className={`size-3 transition-transform duration-200 ${!active ? 'text-muted-foreground/0 group-hover:text-muted-foreground/50 -translate-x-1 group-hover:translate-x-0' : 'opacity-50'}`} />
           )}
         </div>
       )}
