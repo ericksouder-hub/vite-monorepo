@@ -308,38 +308,38 @@ function ProfileDropdown() {
           <>
             <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: -10 }}
+              initial={{ opacity: 0, scale: 0.95, y: -4 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: -10 }}
-              transition={{ duration: 0.2 }}
-              className="absolute right-0 top-full mt-2 w-80 z-50 rounded-xl border bg-card shadow-lg overflow-hidden flex flex-col"
+              exit={{ opacity: 0, scale: 0.95, y: -4 }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
+              className="absolute right-0 top-full mt-2 w-60 z-50 rounded-xl border bg-card shadow-lg shadow-black/5 overflow-hidden flex flex-col"
             >
-              <div className="flex items-center gap-4 px-4 py-2.5 font-normal">
+              <div className="flex items-center gap-3 px-3 py-3 font-normal">
                 <div className="relative">
-                  <span className="relative flex shrink-0 overflow-hidden rounded-full size-10">
+                  <span className="relative flex shrink-0 overflow-hidden rounded-full size-9">
                     <img className="aspect-square size-full" alt="John Doe" src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-1.png" />
                   </span>
-                  <span className="ring-card absolute right-0 bottom-0 block size-2 rounded-full bg-green-600 ring-2"></span>
+                  <span className="ring-card absolute right-0 bottom-0 block size-2 rounded-full bg-green-500 ring-2"></span>
                 </div>
-                <div className="flex flex-1 flex-col items-start">
-                  <span className="text-foreground text-lg font-semibold">John Doe</span>
-                  <span className="text-muted-foreground text-base">john.doe@example.com</span>
+                <div className="flex flex-1 flex-col items-start min-w-0">
+                  <span className="text-foreground text-sm font-semibold truncate w-full">John Doe</span>
+                  <span className="text-muted-foreground text-xs truncate w-full">john.doe@example.com</span>
                 </div>
               </div>
 
               <div className="bg-border h-px w-full shrink-0"></div>
 
               <div className="p-1">
-                <button className="relative flex w-full cursor-pointer items-center gap-2 rounded-sm px-4 py-2.5 text-base hover:bg-accent hover:text-accent-foreground transition-colors">
-                  <User className="text-foreground size-5" />
+                <button className="relative flex w-full cursor-pointer items-center gap-2 rounded-md px-3 py-1.5 text-sm hover:bg-accent hover:text-accent-foreground transition-colors">
+                  <User className="text-muted-foreground size-4" />
                   <span>My account</span>
                 </button>
-                <button className="relative flex w-full cursor-pointer items-center gap-2 rounded-sm px-4 py-2.5 text-base hover:bg-accent hover:text-accent-foreground transition-colors">
-                  <Settings className="text-foreground size-5" />
+                <button className="relative flex w-full cursor-pointer items-center gap-2 rounded-md px-3 py-1.5 text-sm hover:bg-accent hover:text-accent-foreground transition-colors">
+                  <Settings className="text-muted-foreground size-4" />
                   <span>Settings</span>
                 </button>
-                <button className="relative flex w-full cursor-pointer items-center gap-2 rounded-sm px-4 py-2.5 text-base hover:bg-accent hover:text-accent-foreground transition-colors">
-                  <CreditCard className="text-foreground size-5" />
+                <button className="relative flex w-full cursor-pointer items-center gap-2 rounded-md px-3 py-1.5 text-sm hover:bg-accent hover:text-accent-foreground transition-colors">
+                  <CreditCard className="text-muted-foreground size-4" />
                   <span>Billing</span>
                 </button>
               </div>
@@ -347,16 +347,16 @@ function ProfileDropdown() {
               <div className="bg-border h-px w-full shrink-0"></div>
 
               <div className="p-1">
-                <button className="relative flex w-full cursor-pointer items-center gap-2 rounded-sm px-4 py-2.5 text-base hover:bg-accent hover:text-accent-foreground transition-colors">
-                  <Users className="text-foreground size-5" />
+                <button className="relative flex w-full cursor-pointer items-center gap-2 rounded-md px-3 py-1.5 text-sm hover:bg-accent hover:text-accent-foreground transition-colors">
+                  <Users className="text-muted-foreground size-4" />
                   <span>Manage team</span>
                 </button>
-                <button className="relative flex w-full cursor-pointer items-center gap-2 rounded-sm px-4 py-2.5 text-base hover:bg-accent hover:text-accent-foreground transition-colors">
-                  <SquarePen className="text-foreground size-5" />
+                <button className="relative flex w-full cursor-pointer items-center gap-2 rounded-md px-3 py-1.5 text-sm hover:bg-accent hover:text-accent-foreground transition-colors">
+                  <SquarePen className="text-muted-foreground size-4" />
                   <span>Customization</span>
                 </button>
-                <button className="relative flex w-full cursor-pointer items-center gap-2 rounded-sm px-4 py-2.5 text-base hover:bg-accent hover:text-accent-foreground transition-colors">
-                  <CirclePlus className="text-foreground size-5" />
+                <button className="relative flex w-full cursor-pointer items-center gap-2 rounded-md px-3 py-1.5 text-sm hover:bg-accent hover:text-accent-foreground transition-colors">
+                  <CirclePlus className="text-muted-foreground size-4" />
                   <span>Add team account</span>
                 </button>
               </div>
@@ -364,8 +364,8 @@ function ProfileDropdown() {
               <div className="bg-border h-px w-full shrink-0"></div>
 
               <div className="p-1">
-                <button className="relative flex w-full cursor-pointer items-center gap-2 rounded-sm px-4 py-2.5 text-base text-destructive hover:bg-destructive/10 transition-colors">
-                  <LogOut className="size-5" />
+                <button className="relative flex w-full cursor-pointer items-center gap-2 rounded-md px-3 py-1.5 text-sm text-destructive hover:bg-destructive/10 transition-colors">
+                  <LogOut className="size-4" />
                   <span>Logout</span>
                 </button>
               </div>
