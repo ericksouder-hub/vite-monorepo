@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { motion } from 'motion/react';
 import {
     Image as ImageIcon,
     CloudUpload,
@@ -12,6 +11,7 @@ import {
     Trash2,
     ChevronDown
 } from 'lucide-react';
+import { Tabs } from '@/components/Tabs';
 
 export function Settings() {
     const [activeTab, setActiveTab] = useState('general');
@@ -30,48 +30,17 @@ export function Settings() {
     return (
         <div className="w-full pt-4 pb-12">
             <div className="mx-auto min-h-screen max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div
-                    role="tablist"
-                    aria-orientation="horizontal"
-                    className="sticky top-[112px] md:top-[120px] z-30 flex items-center gap-1 border-b border-border/50 bg-background/80 backdrop-blur-md -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 mb-6 before:absolute before:bottom-full before:left-[-1000px] before:right-[-1000px] before:h-[112px] md:before:h-[120px] before:bg-background before:content-['']"
-                >
-                    <button
-                        onClick={() => setActiveTab('general')}
-                        className={`relative px-4 py-3 text-sm font-semibold transition-all ${activeTab === 'general'
-                            ? 'text-foreground'
-                            : 'text-muted-foreground hover:text-foreground'
-                            }`}
-                    >
-                        General
-                        {activeTab === 'general' && (
-                            <motion.div layoutId="active-settings-tab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
-                        )}
-                    </button>
-                    <button
-                        onClick={() => setActiveTab('preferences')}
-                        className={`relative px-4 py-3 text-sm font-semibold transition-all ${activeTab === 'preferences'
-                            ? 'text-foreground'
-                            : 'text-muted-foreground hover:text-foreground'
-                            }`}
-                    >
-                        Preferences
-                        {activeTab === 'preferences' && (
-                            <motion.div layoutId="active-settings-tab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
-                        )}
-                    </button>
-                    <button
-                        onClick={() => setActiveTab('users')}
-                        className={`relative px-4 py-3 text-sm font-semibold transition-all ${activeTab === 'users'
-                            ? 'text-foreground'
-                            : 'text-muted-foreground hover:text-foreground'
-                            }`}
-                    >
-                        Users
-                        {activeTab === 'users' && (
-                            <motion.div layoutId="active-settings-tab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
-                        )}
-                    </button>
-                </div>
+                <Tabs
+                    tabs={[
+                        { id: 'general', label: 'General' },
+                        { id: 'preferences', label: 'Preferences' },
+                        { id: 'users', label: 'Users' }
+                    ]}
+                    activeTab={activeTab}
+                    onChange={setActiveTab}
+                    layoutId="active-settings-tab"
+                    className="sticky top-[112px] md:top-[120px] z-30 -mx-4 sm:-mx-6 lg:-mx-8 sm:px-6 lg:px-8 mb-6 before:absolute before:bottom-full before:left-[-1000px] before:right-[-1000px] before:h-[112px] md:before:h-[120px] before:bg-background before:content-['']"
+                />
 
                 <div className="mt-4">
                     {activeTab === 'general' && <GeneralSettings />}
