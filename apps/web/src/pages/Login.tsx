@@ -11,7 +11,7 @@ export function Login() {
     return (
         <AuthLayout
             title={<>Welcome back!<br /><span className="text-white/80">Please sign in to your Ava account</span></>}
-            description="Thank you for registering! Please check your inbox and click the verification link to activate your account."
+            description="Access your dashboard and manage your appointments."
             cardTitle="Plan your days better with Ava"
             cardDescription="Stay connected with Ava. We help you stay organized and never miss an appointment again."
             avatarSeedOffset={20}
